@@ -6,7 +6,7 @@ import org.apache.velocity.runtime.RuntimeConstants;
 public class VelocityBuilder {
 
     VelocityEngine velocityEngine = new VelocityEngine();
-    public VelocityEngine  createVelocityEngineFoundation() {
+    public VelocityEngine createVelocityEngineFoundation() {
 
 
         velocityEngine.setProperty(RuntimeConstants.FILE_RESOURCE_LOADER_PATH, System.getProperty("user.home") + "\\OpenTerminal\\foundation\\");
