@@ -7,13 +7,16 @@ import org.ares.openterminal.Buildable;
 import org.ares.openterminal.util.StringUtil;
 import org.ares.openterminal.util.VelocityBuilder;
 import org.ares.openterminal.util.YamlHandler;
-
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Parameters;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 
+@Command(name = "make:quest")
 public class CreateQuest implements Runnable, Buildable {
 
+    @Parameters()
     private String name;
 
     final static String PROPERTY_KEY = "quest_location";

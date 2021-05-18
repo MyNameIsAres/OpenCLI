@@ -29,12 +29,9 @@ public class CreateSimpleCommand implements Runnable, Buildable {
     public VelocityContext buildContext() {
         VelocityContext context = new VelocityContext();
 
-        new StringUtil();
-        String commandName = StringUtil.getCommandName(name);
-
         context.put("PACKAGE_NAME", packageName);
         context.put("CLASS_NAME", name);
-        context.put("NAME", commandName);
+        context.put("NAME", StringUtil.getCommandName(name));
 
         return context;
     }

@@ -23,6 +23,11 @@ public class CreateRocket implements Runnable, Buildable {
     }
 
     @Override
+    public void createTemplate(Writer writer) {
+
+    }
+
+    @Override
     public void writeToTemplate() {
 
     }
