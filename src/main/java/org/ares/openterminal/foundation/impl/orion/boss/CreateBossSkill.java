@@ -8,14 +8,17 @@ import org.ares.openterminal.util.StringUtil;
 import org.ares.openterminal.util.VelocityBuilder;
 import org.ares.openterminal.util.YamlHandler;
 import picocli.CommandLine;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Parameters;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 
-public class CreateBossSkill implements Runnable, Buildable {
+@Command(name = "make:boss-skill")
+class CreateBossSkill implements Runnable, Buildable {
 
-    @CommandLine.Parameters()
+    @Parameters()
     private String name;
 
     final static String PROPERTY_KEY = "boss_skill_location";

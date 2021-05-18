@@ -7,15 +7,16 @@ import org.ares.openterminal.Buildable;
 import org.ares.openterminal.util.StringUtil;
 import org.ares.openterminal.util.VelocityBuilder;
 import org.ares.openterminal.util.YamlHandler;
-import picocli.CommandLine;
-
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Parameters;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 
+@Command(name = "make:rank")
 public class CreateRank implements Runnable, Buildable {
 
-    @CommandLine.Parameters()
+    @Parameters()
     private String name;
 
     final static String PROPERTY_KEY = "rank_location";
