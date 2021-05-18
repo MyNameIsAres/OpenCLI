@@ -3,16 +3,16 @@ package org.ares.openterminal.foundation.impl.command;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
+import org.ares.openterminal.Buildable;
 import org.ares.openterminal.util.StringUtil;
 import org.ares.openterminal.util.VelocityBuilder;
 import org.ares.openterminal.util.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 import java.io.*;
-import java.util.Arrays;
 
 @Command(name = "make:command")
-public class CreateSimpleCommand implements Runnable {
+public class CreateSimpleCommand implements Runnable, Buildable {
 
     @Parameters()
     private String name;
@@ -20,9 +20,6 @@ public class CreateSimpleCommand implements Runnable {
     final static String PROPERTY_KEY = "command_location";
 
     final static String TEMPLATE = "\\command\\SimpleCommandTemplate.vm";
-
-
-
 
     final YamlHandler yamlHandler = new YamlHandler();
 
@@ -32,7 +29,8 @@ public class CreateSimpleCommand implements Runnable {
     public VelocityContext buildContext() {
         VelocityContext context = new VelocityContext();
 
-        String commandName = new StringUtil().getCommandName(name);
+        new StringUtil();
+        String commandName = StringUtil.getCommandName(name);
 
         context.put("PACKAGE_NAME", packageName);
         context.put("CLASS_NAME", name);
@@ -41,12 +39,10 @@ public class CreateSimpleCommand implements Runnable {
         return context;
     }
 
+    // TODO: Extract to class??
     public Writer createFileWriter() {
         try {
-            Writer writer =  new FileWriter(yamlHandler.getTargetLocation(projectPath, yamlHandler.getKeyValue(PROPERTY_KEY), name) + ".java");
-            System.out.println("First writer instance + " + writer);
-
-            return writer;
+            return new FileWriter(yamlHandler.getTargetLocation(projectPath, yamlHandler.getKeyValue(PROPERTY_KEY), name) + ".java");
         } catch (IOException ioException) {
 
             System.out.println(ioException.getMessage());
