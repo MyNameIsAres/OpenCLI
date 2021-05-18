@@ -1,4 +1,4 @@
-package org.ares.openterminal.foundation.impl.orion;
+package org.ares.openterminal.foundation.impl.orion.boss;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -7,17 +7,20 @@ import org.ares.openterminal.Buildable;
 import org.ares.openterminal.util.StringUtil;
 import org.ares.openterminal.util.VelocityBuilder;
 import org.ares.openterminal.util.YamlHandler;
+import picocli.CommandLine;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 
-public class CreateClass implements Runnable, Buildable {
+public class CreateBossSkill implements Runnable, Buildable {
+
+    @CommandLine.Parameters()
     private String name;
 
-    final static String PROPERTY_KEY = "class_location";
+    final static String PROPERTY_KEY = "boss_skill_location";
 
-    final static String TEMPLATE = "\\Orion\\ClassTemplate.vm";
+    final static String TEMPLATE = "\\Orion\\Boss\\SkillTemplate.vm";
 
     final YamlHandler yamlHandler = new YamlHandler();
 
@@ -30,7 +33,7 @@ public class CreateClass implements Runnable, Buildable {
 
         context.put("PACKAGE_NAME", packageName);
         context.put("CLASS_NAME", name);
-        context.put("NAME", StringUtil.getClassName(name));
+        context.put("NAME", StringUtil.getSkillName(name));
 
         return context;
     }
@@ -85,5 +88,4 @@ public class CreateClass implements Runnable, Buildable {
     public void run() {
         buildTemplate();
     }
-
 }
