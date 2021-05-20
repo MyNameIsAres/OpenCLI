@@ -1,6 +1,8 @@
 org\ares\openterminal\foundation\impl\orion\boss\CreateBoss.class
+org\ares\openterminal\util\TemplateBuilder.class
 org\ares\openterminal\spring\SpringCreateControllerCommand.class
 org\ares\openterminal\foundation\impl\orion\boss\CreateBossSkill.class
+org\ares\openterminal\util\FileBuilder.class
 org\ares\openterminal\foundation\impl\CreateSimpleEnchantment.class
 org\ares\openterminal\OpenTerminal.class
 org\ares\openterminal\foundation\impl\menu\CreateMenuTools.class

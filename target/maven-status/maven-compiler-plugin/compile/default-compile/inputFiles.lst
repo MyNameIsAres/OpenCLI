@@ -15,13 +15,16 @@ C:\Users\Ares\IdeaProjects\OpenTerminalProject\src\main\java\org\ares\opentermin
 C:\Users\Ares\IdeaProjects\OpenTerminalProject\src\main\java\org\ares\openterminal\foundation\impl\tool\CreateRocket.java
 C:\Users\Ares\IdeaProjects\OpenTerminalProject\src\main\java\org\ares\openterminal\spring\SpringCreateServiceCommand.java
 C:\Users\Ares\IdeaProjects\OpenTerminalProject\src\main\java\org\ares\openterminal\foundation\impl\menu\CreateMenuPagged.java
+C:\Users\Ares\IdeaProjects\OpenTerminalProject\src\main\java\org\ares\openterminal\util\FileBuilder.java
 C:\Users\Ares\IdeaProjects\OpenTerminalProject\src\main\java\org\ares\openterminal\Buildable.java
 C:\Users\Ares\IdeaProjects\OpenTerminalProject\src\main\java\org\ares\openterminal\exceptions\KeyValueNotFoundException.java
 C:\Users\Ares\IdeaProjects\OpenTerminalProject\src\main\java\org\ares\openterminal\foundation\impl\tool\CreateBlockTool.java
+C:\Users\Ares\IdeaProjects\OpenTerminalProject\src\main\java\org\ares\openterminal\util\TemplateBuilder.java
 C:\Users\Ares\IdeaProjects\OpenTerminalProject\src\main\java\org\ares\openterminal\foundation\impl\conversation\CreateSimpleConversation.java
 C:\Users\Ares\IdeaProjects\OpenTerminalProject\src\main\java\org\ares\openterminal\util\StringUtil.java
 C:\Users\Ares\IdeaProjects\OpenTerminalProject\src\main\java\org\ares\openterminal\foundation\impl\command\CreateSimpleCommand.java
 C:\Users\Ares\IdeaProjects\OpenTerminalProject\src\main\java\org\ares\openterminal\spring\SpringCreateRepositoryCommand.java
+C:\Users\Ares\IdeaProjects\OpenTerminalProject\src\main\java\org\ares\openterminal\foundation\impl\orion\boss\CreateBossSkill.java
 C:\Users\Ares\IdeaProjects\OpenTerminalProject\src\main\java\org\ares\openterminal\spring\SpringCreateControllerCommand.java
 C:\Users\Ares\IdeaProjects\OpenTerminalProject\src\main\java\org\ares\openterminal\foundation\impl\menu\CreateMenu.java
 C:\Users\Ares\IdeaProjects\OpenTerminalProject\src\main\java\org\ares\openterminal\foundation\impl\tool\CreateTool.java
