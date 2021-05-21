@@ -27,7 +27,7 @@ public class CreateBoss implements Runnable, Buildable {
         VelocityContext context = new VelocityContext();
 
         context.put("PACKAGE_NAME", PACKAGE_NAME);
-        context.put("CLASS_NAME", name);
+        context.put("CLASS_NAME", StringUtil.addBossLabel(name));
         context.put("NAME", StringUtil.getBossName(name));
 
         return context;

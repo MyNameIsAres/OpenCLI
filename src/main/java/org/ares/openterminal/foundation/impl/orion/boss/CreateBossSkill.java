@@ -9,7 +9,7 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 import java.io.Writer;
 
-@Command(name = "make:boss-skill")
+@Command(name = "make:bossskill", aliases = {"make:bs", "make:boss-skill"})
 class CreateBossSkill implements Runnable, Buildable {
 
     @Parameters()
@@ -26,8 +26,8 @@ class CreateBossSkill implements Runnable, Buildable {
         VelocityContext context = new VelocityContext();
 
         context.put("PACKAGE_NAME", PACKAGE_NAME);
-        context.put("CLASS_NAME", name);
-        context.put("NAME", StringUtil.getSkillName(name));
+        context.put("CLASS_NAME", StringUtil.addBossSkillLabel(name));
+        context.put("NAME", StringUtil.getBossSkill(name));
 
         return context;
     }

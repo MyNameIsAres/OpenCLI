@@ -27,7 +27,7 @@ public class CreateQuest implements Runnable, Buildable {
         VelocityContext context = new VelocityContext();
 
         context.put("PACKAGE_NAME", PACKAGE_NAME);
-        context.put("CLASS_NAME", name);
+        context.put("CLASS_NAME", StringUtil.addQuestLabel(name));
         context.put("NAME", StringUtil.getQuestName(name));
 
         return context;

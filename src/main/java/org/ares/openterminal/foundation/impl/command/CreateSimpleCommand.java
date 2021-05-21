@@ -1,6 +1,7 @@
 package org.ares.openterminal.foundation.impl.command;
 
 import org.apache.velocity.VelocityContext;
+import org.ares.openterminal.Buildable;
 import org.ares.openterminal.util.StringUtil;
 import org.ares.openterminal.util.TemplateBuilder;
 import org.ares.openterminal.util.YamlHandler;
@@ -9,7 +10,7 @@ import picocli.CommandLine.Parameters;
 import java.io.*;
 
 @Command(name = "make:command")
-public class CreateSimpleCommand implements Runnable {
+public class CreateSimpleCommand implements Runnable, Buildable {
 
     @Parameters()
     private String name;
@@ -24,7 +25,7 @@ public class CreateSimpleCommand implements Runnable {
         VelocityContext context = new VelocityContext();
 
         context.put("PACKAGE_NAME", PACKAGE_NAME);
-        context.put("CLASS_NAME", name);
+        context.put("CLASS_NAME", StringUtil.addCommandLabel(name));
         context.put("NAME", StringUtil.getCommandName(name));
 
         return context;

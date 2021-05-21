@@ -32,7 +32,7 @@ public class CreateNPC implements Runnable, Buildable {
 
         context.put("PACKAGE_NAME", PACKAGE_NAME);
         context.put("CLASS_NAME", name);
-        context.put("NAME", StringUtil.getRankName(name));
+        context.put("NAME", StringUtil.getNPCName(name));
 
         return context;
     }

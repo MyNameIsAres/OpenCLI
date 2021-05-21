@@ -2,6 +2,7 @@ package org.ares.openterminal.foundation.impl.conversation;
 
 import org.apache.velocity.VelocityContext;
 import org.ares.openterminal.Buildable;
+import org.ares.openterminal.util.StringUtil;
 import org.ares.openterminal.util.TemplateBuilder;
 import org.ares.openterminal.util.YamlHandler;
 import picocli.CommandLine.Command;
@@ -25,7 +26,7 @@ public class CreateSimpleConversation implements Runnable, Buildable {
         VelocityContext context = new VelocityContext();
 
         context.put("PACKAGE_NAME", PACKAGE_NAME);
-        context.put("CLASS_NAME", name);
+        context.put("CLASS_NAME", StringUtil.addConversationLabel(name));
 
         return context;
     }

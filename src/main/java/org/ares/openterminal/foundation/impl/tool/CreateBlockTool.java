@@ -10,7 +10,7 @@ import picocli.CommandLine.Parameters;
 
 import java.io.Writer;
 
-@Command
+@Command(name = "make:blocktool")
 public class CreateBlockTool implements Runnable, Buildable {
 
     @Parameters()
@@ -26,8 +26,7 @@ public class CreateBlockTool implements Runnable, Buildable {
         VelocityContext context = new VelocityContext();
 
         context.put("PACKAGE_NAME", PACKAGE_NAME);
-        context.put("CLASS_NAME", name);
-        context.put("NAME", StringUtil.getBlockToolName(name));
+        context.put("CLASS_NAME", StringUtil.addBlockToolLabel(name));
 
         return context;
     }
