@@ -5,17 +5,15 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.ares.openterminal.util.VelocityBuilder;
 import org.ares.openterminal.util.YamlHandler;
-import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Map;
 
 @Command(name = "create:enchantment")
-public class CreateSimpleEnchantment implements Runnable{
+public class CreateSimpleEnchantment implements Runnable {
 
     @Parameters()
     private String name;

@@ -2,44 +2,42 @@ package org.ares.openterminal.foundation.impl.tool;
 
 import org.apache.velocity.VelocityContext;
 import org.ares.openterminal.Buildable;
+import org.ares.openterminal.util.StringUtil;
+import org.ares.openterminal.util.TemplateBuilder;
+import org.ares.openterminal.util.YamlHandler;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Parameters;
 
 import java.io.Writer;
 
+@Command
 public class CreateBlockTool implements Runnable, Buildable {
 
-    @Override
+    @Parameters()
+    private String name;
+
+    final static String PROPERTY_KEY = "tool_location";
+
+    final static String TEMPLATE = "\\tool\\BlockToolTemplate.vm";
+
+    final static String PACKAGE_NAME = new YamlHandler().getPackageName(PROPERTY_KEY);
+
     public VelocityContext buildContext() {
-        return null;
-    }
+        VelocityContext context = new VelocityContext();
 
-    @Override
-    public Writer createFileWriter() {
-        return null;
-    }
+        context.put("PACKAGE_NAME", PACKAGE_NAME);
+        context.put("CLASS_NAME", name);
+        context.put("NAME", StringUtil.getBlockToolName(name));
 
-    @Override
-    public void flushFileWriter(Writer writer) {
-
-    }
-
-    @Override
-    public void createTemplate(Writer writer) {
-
-    }
-
-    @Override
-    public void writeToTemplate() {
-
-    }
-
-    @Override
-    public void buildTemplate() {
-
+        return context;
     }
 
     @Override
     public void run() {
-
+        TemplateBuilder templateBuilder = new TemplateBuilder();
+        Writer writer = templateBuilder.createFileWriter(PROPERTY_KEY, name);
+        templateBuilder.createTemplate(writer, TEMPLATE, buildContext());
+        templateBuilder.flushFileWriter(writer);
     }
 
 }

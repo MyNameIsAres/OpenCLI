@@ -12,8 +12,7 @@ public class TemplateBuilder {
 
     YamlHandler yamlHandler = new YamlHandler();
 
-
-    public Writer createFileWriter( String propertyKey, String name) {
+    public Writer createFileWriter(String propertyKey, String name) {
         try {
             return new FileWriter(yamlHandler.getTargetLocation(yamlHandler.getProjectPath(), yamlHandler.getKeyValue(propertyKey), name) + ".java");
         } catch (IOException ioException) {
