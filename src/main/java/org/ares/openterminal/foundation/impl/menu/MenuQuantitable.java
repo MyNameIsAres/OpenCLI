@@ -1,4 +1,4 @@
-package org.ares.openterminal.foundation.impl.command;
+package org.ares.openterminal.foundation.impl.menu;
 
 import org.apache.velocity.VelocityContext;
 import org.ares.openterminal.Buildable;
@@ -7,17 +7,18 @@ import org.ares.openterminal.util.TemplateBuilder;
 import org.ares.openterminal.util.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
-import java.io.*;
 
-@Command(name = "make:command", aliases = "make:cmd")
-public class CreateSimpleCommand implements Runnable, Buildable {
+import java.io.Writer;
+
+@Command(name = "make:menuquantitable", aliases = "make:menuq")
+public class MenuQuantitable implements Runnable, Buildable {
 
     @Parameters()
     private String name;
 
-    final static String PROPERTY_KEY = "command_location";
+    final static String PROPERTY_KEY = "menu_location";
 
-    final static String TEMPLATE = "\\command\\SimpleCommandTemplate.vm";
+    final static String TEMPLATE = "\\menu\\MenuQuantitableTemplate.vm";
 
     final static String PACKAGE_NAME = new YamlHandler().getPackageName(PROPERTY_KEY);
 
@@ -25,8 +26,7 @@ public class CreateSimpleCommand implements Runnable, Buildable {
         VelocityContext context = new VelocityContext();
 
         context.put("PACKAGE_NAME", PACKAGE_NAME);
-        context.put("CLASS_NAME", StringUtil.addCommandLabel(name));
-        context.put("NAME", StringUtil.getCommandName(name));
+        context.put("CLASS_NAME", StringUtil.addMenuLabel(name));
 
         return context;
     }
@@ -39,3 +39,4 @@ public class CreateSimpleCommand implements Runnable, Buildable {
         templateBuilder.flushFileWriter(writer);
     }
 }
+
