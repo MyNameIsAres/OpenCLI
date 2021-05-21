@@ -1,73 +1,40 @@
 package org.ares.openterminal.foundation.impl;
 
-import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.VelocityEngine;
-import org.ares.openterminal.util.VelocityBuilder;
+import org.ares.openterminal.Buildable;
+import org.ares.openterminal.util.StringUtil;
+import org.ares.openterminal.util.TemplateBuilder;
 import org.ares.openterminal.util.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.Writer;
-import java.util.Map;
 
 @Command(name = "create:enchantment")
-public class CreateSimpleEnchantment implements Runnable {
+public class CreateSimpleEnchantment implements Runnable, Buildable {
 
     @Parameters()
     private String name;
 
     final static String PROPERTY_KEY = "enchant_location";
 
-    VelocityContext velocityContext = new VelocityContext();
+    final static String TEMPLATE = "\\SimpleEnchantmentTemplate.vm";
 
-    public void build() {
-        VelocityEngine engine = new VelocityBuilder().createVelocityEngineFoundation();
+    final static String PACKAGE_NAME = new YamlHandler().getPackageName(PROPERTY_KEY);
 
-        Map<String, Object> data = new YamlHandler().fetchInformation();
-        String projectPath = data.get("project-path").toString();
+    public VelocityContext buildContext() {
+        VelocityContext context = new VelocityContext();
 
-        String packageName = projectPath + data.get(PROPERTY_KEY);
-        packageName = packageName.replace("/", ".");
+        context.put("PACKAGE_NAME", PACKAGE_NAME);
+        context.put("CLASS_NAME", StringUtil.addEnchantmentLabel(name));
 
-        velocityContext.put("PACKAGE_NAME", packageName);
-        velocityContext.put("NAME", name);
-
-        if (data.get(PROPERTY_KEY) == null || data.get(PROPERTY_KEY).toString().isEmpty()) {
-
-            System.out.println("Couldn't load property named " + PROPERTY_KEY + "or any of its corresponding values!");
-            return;
-        }
-
-        String targetLocation = "src/main/java/" + projectPath + data.get(PROPERTY_KEY) + "/" + name;
-
-
-        Writer writer = null;
-
-        try {
-            writer = new FileWriter(targetLocation + ".java");
-        } catch (IOException ioException) {
-
-            System.out.println(ioException.getMessage());
-
-            System.out.println("An error occurred!!!");
-        }
-
-        Template template = engine.getTemplate("SimpleEnchantment.vm");
-
-        engine.mergeTemplate(template.getName(), "UTF-8", velocityContext, writer);
-
-        try {
-            writer.flush();
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return context;
     }
 
     @Override
     public void run() {
-        build();
+        TemplateBuilder templateBuilder = new TemplateBuilder();
+        Writer writer = templateBuilder.createFileWriter(PROPERTY_KEY, name);
+        templateBuilder.createTemplate(writer, TEMPLATE, buildContext());
+        templateBuilder.flushFileWriter(writer);
     }
 }

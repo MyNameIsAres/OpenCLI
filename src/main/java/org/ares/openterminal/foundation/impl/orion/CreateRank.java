@@ -26,7 +26,7 @@ public class CreateRank implements Runnable, Buildable {
         VelocityContext context = new VelocityContext();
 
         context.put("PACKAGE_NAME", PACKAGE_NAME);
-        context.put("CLASS_NAME", name);
+        context.put("CLASS_NAME", StringUtil.addRankLabel(name));
         context.put("NAME", StringUtil.getRankName(name));
         return context;
     }
