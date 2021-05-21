@@ -3,7 +3,6 @@ package org.ares.openterminal.util;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
@@ -27,7 +26,7 @@ public class TemplateBuilder {
             writer.flush();
             writer.close();
         } catch (IOException e) {
-            e.printStackTrace();
+           System.out.println("We couldn't flush this due to a NullPointerException!");
         }
     }
 
@@ -35,10 +34,14 @@ public class TemplateBuilder {
         VelocityEngine engine = new VelocityBuilder().createVelocityEngineFoundation();
         Template templateName = engine.getTemplate(template);
 
-        engine.mergeTemplate(templateName.getName(), "UTF-8", context, writer);
-    }
+        try {
+            engine.mergeTemplate(templateName.getName(), "UTF-8", context, writer);
+        } catch(NullPointerException exception) {
+          // TODO: Create folder if it doesn't exist.
 
-    public void buildTemplate() {
+            System.out.println("We can't find this directory!");
+        }
+
 
     }
 

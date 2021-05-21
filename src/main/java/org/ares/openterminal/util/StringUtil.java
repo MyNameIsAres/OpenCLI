@@ -106,4 +106,25 @@ public class StringUtil {
     }
 
 
+    public static String getPromptName(String name) {
+        if (!name.contains("Prompt")) {
+            return name;
+        }
+
+        return Arrays.toString(name.split("Prompt"))
+                .replace("[", "")
+                .replace("]", "");
+    }
+
+    public static String getConversationName(String name) {
+        if (!name.contains("Conversation")) {
+            return name;
+        }
+
+        return Arrays.toString(name.split("Conversation"))
+                .replace("[", "")
+                .replace("]", "");
+    }
+
+
 }
