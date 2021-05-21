@@ -12,30 +12,6 @@ public class CreateRocket implements Runnable, Buildable {
         return null;
     }
 
-    @Override
-    public Writer createFileWriter() {
-        return null;
-    }
-
-    @Override
-    public void flushFileWriter(Writer writer) {
-
-    }
-
-    @Override
-    public void createTemplate(Writer writer) {
-
-    }
-
-    @Override
-    public void writeToTemplate() {
-
-    }
-
-    @Override
-    public void buildTemplate() {
-
-    }
 
     @Override
     public void run() {
