@@ -214,4 +214,8 @@ public class StringUtil {
     public static String addEnchantmentLabel(String className) {
         return !className.contains("Enchantment") ? className + "Enchantment" : className;
     }
+
+    public static String addMenuLabel(String className) {
+        return !className.contains("Menu") ? className + "Menu" : className;
+    }
 }
