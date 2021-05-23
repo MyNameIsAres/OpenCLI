@@ -21,12 +21,21 @@ public class TemplateBuilder {
         return null;
     }
 
+    public Writer createFileWriterCommandGroup(String propertyKey, String commandGroupPath, String name) {
+        try {
+            return new FileWriter(yamlHandler.getTargetLocation(yamlHandler.getProjectPath(), yamlHandler.getKeyValue(propertyKey) + "/" + commandGroupPath , name) + ".java");
+        } catch (IOException | NullPointerException exception) {
+            System.out.println(exception.getMessage());
+        }
+        return null;
+    }
+
     public void flushFileWriter(Writer writer) {
         try {
             writer.flush();
             writer.close();
-        } catch (IOException e) {
-           System.out.println("We couldn't flush this due to a NullPointerException!");
+        } catch (IOException | NullPointerException exception) {
+           System.out.println("We couldn't flush this due to an exception!");
         }
     }
 
@@ -42,7 +51,5 @@ public class TemplateBuilder {
             System.out.println("We can't find this directory!");
         }
 
-
     }
-
 }

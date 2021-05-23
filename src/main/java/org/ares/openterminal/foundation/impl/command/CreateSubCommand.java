@@ -9,34 +9,35 @@ import org.ares.openterminal.util.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
-import java.io.Writer;
+import java.io.*;
 
-@Command(name = "make:commandgroup", aliases = "make:cmdgroup")
-public class CreateCommandGroup implements Runnable, Buildable {
+@Command(name = "make:subcommand", aliases = "make:subcmd")
+public class CreateSubCommand implements Runnable, Buildable {
 
-    @Parameters
+    @Parameters()
     private String name;
 
-    @Option(names = {"package", "p"})
+    @Option(names = {"parent", "p"})
     String subPackageName = "";
 
     final static String PROPERTY_KEY = "command_location";
 
-    final static String TEMPLATE = "\\command\\SimpleCommandGroupTemplate.vm";
+    final static String TEMPLATE = "\\command\\SimpleSubCommandTemplate.vm";
+
 
     public VelocityContext buildContext() {
         VelocityContext context = new VelocityContext();
 
         context.put("PACKAGE_NAME", "");
-        context.put("CLASS_NAME", StringUtil.addCommandGroupLabel(name));
+        context.put("CLASS_NAME", StringUtil.addCommandLabel(name));
+        context.put("NAME", StringUtil.getCommandName(name).toLowerCase());
 
         return context;
     }
 
-    // TODO To be refactored later
     @Override
     public void run() {
-        final String packageName =  PackageHandler.createPackage(name, subPackageName, PROPERTY_KEY);
+        final String packageName =  PackageHandler.createPackageSubCommand(name, subPackageName, PROPERTY_KEY);
         TemplateBuilder templateBuilder = new TemplateBuilder();
         VelocityContext context = buildContext();
         context.put("PACKAGE_NAME", new YamlHandler().getCommandGroupPackageName(PROPERTY_KEY, packageName));
@@ -45,5 +46,4 @@ public class CreateCommandGroup implements Runnable, Buildable {
         templateBuilder.createTemplate(writer, TEMPLATE, context);
         templateBuilder.flushFileWriter(writer);
     }
-
 }
