@@ -44,6 +44,7 @@ public class YamlHandler {
         return fetchInformation().get(key).toString();
     };
 
+    // TODO Uhh, fix this yeh
     public void verifyKey(String key)  {
         if (this.getKeyValue(key) == null || this.getKeyValue(key).isEmpty()) {
 
@@ -55,10 +56,24 @@ public class YamlHandler {
         return  PREFIX + projectPath + key + "/" + name;
     }
 
+    public String getCommandGroupLocation(final String projectPath, final String key) {
+        System.out.println(projectPath);
+        System.out.println(key);
+        return PREFIX + projectPath + key + "/";
+    }
+
+
     public String getPackageName(String key) {
-        String packageName = this.getProjectPath() + this.getKeyValue(key).replace("/", ".");
+        String packageName = this.getProjectPath() + this.getKeyValue(key);
         packageName = packageName.replace("/", ".");
 
         return packageName;
+    }
+
+    public String getCommandGroupPackageName(String key, String packageName) {
+        String newPackageName = this.getProjectPath() + this.getKeyValue(key) + "." +packageName;
+        newPackageName = newPackageName.replace("/", ".");
+
+        return newPackageName;
     }
 }

@@ -1,7 +1,9 @@
 package org.ares.openterminal;
 
 import org.ares.openterminal.foundation.impl.CreateSimpleEnchantment;
+import org.ares.openterminal.foundation.impl.command.CreateCommandGroup;
 import org.ares.openterminal.foundation.impl.command.CreateSimpleCommand;
+import org.ares.openterminal.foundation.impl.command.CreateSubCommand;
 import org.ares.openterminal.foundation.impl.conversation.CreateSimpleConversation;
 import org.ares.openterminal.foundation.impl.conversation.CreateSimplePrompt;
 import org.ares.openterminal.spring.SpringCreateModelCommand;
@@ -28,11 +30,13 @@ class OpenTerminal implements Runnable {
 //
 //
         new CommandLine(new OpenTerminal())
-                .addSubcommand(new CreateSimpleEnchantment())
+//                .addSubcommand(new CreateSimpleEnchantment())
                 .addSubcommand(new CreateSimpleCommand())
                 .addSubcommand(new SpringCreateModelCommand())
                 .addSubcommand(new CreateSimplePrompt())
                 .addSubcommand(new CreateSimpleConversation())
+                .addSubcommand(new CreateCommandGroup())
+                .addSubcommand(new CreateSubCommand())
                 .execute(args);
 
 

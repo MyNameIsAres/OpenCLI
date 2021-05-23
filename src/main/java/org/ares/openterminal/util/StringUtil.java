@@ -1,9 +1,17 @@
 package org.ares.openterminal.util;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 
 public class StringUtil {
 
+    // TODO: This method is going to be used in a later stage
+    private static String checkCapital(String name) {
+        boolean isUpperCase =  Character.isUpperCase(name.codePointAt(0));
+
+        return isUpperCase ? name : StringUtils.capitalize(name);
+
+    }
     public static String getCommandName(String name) {
         if (!name.contains("Command")) {
             return name;
@@ -15,9 +23,26 @@ public class StringUtil {
 
     }
 
+
+
     public static String addCommandLabel(String className) {
         return !className.contains("Command") ? className + "Command" : className;
     }
+
+    public static String getCommandGroupName(String name) {
+        if (!name.contains("CommandGroup")) {
+            return name;
+        }
+
+        return Arrays.toString(name.split("CommandGroup"))
+                .replace("[", "")
+                .replace("]", "");
+    }
+
+    public static String addCommandGroupLabel(String className) {
+        return !className.contains("CommandGroup") ? className + "CommandGroup" : className;
+    }
+
 
     public static String getBossName(String name) {
         if (!name.contains("Boss")) {
@@ -30,6 +55,7 @@ public class StringUtil {
     }
 
     public static String addBossLabel(String className) {
+        checkCapital(className);
         return !className.contains("Boss") ? className + "Boss" : className;
     }
 
