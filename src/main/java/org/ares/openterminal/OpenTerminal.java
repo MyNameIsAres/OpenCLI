@@ -1,5 +1,6 @@
 package org.ares.openterminal;
 
+import org.ares.openterminal.foundation.impl.CreateEventListener;
 import org.ares.openterminal.foundation.impl.CreateSimpleEnchantment;
 import org.ares.openterminal.foundation.impl.command.CreateCommandGroup;
 import org.ares.openterminal.foundation.impl.command.CreateSimpleCommand;
@@ -15,20 +16,8 @@ import java.io.*;
 @Command()
 class OpenTerminal implements Runnable {
 
-//    @CommandLine.Option(names = "spigot")
-//    private String spigotTemplate;
-
-
     public static void main(String[] args) throws IOException {
 
-
-
-// =================================================
-//        Scanner scanner = new Scanner(System.in);
-//
-//
-//
-//
         new CommandLine(new OpenTerminal())
 //                .addSubcommand(new CreateSimpleEnchantment())
                 .addSubcommand(new CreateSimpleCommand())
@@ -37,17 +26,13 @@ class OpenTerminal implements Runnable {
                 .addSubcommand(new CreateSimpleConversation())
                 .addSubcommand(new CreateCommandGroup())
                 .addSubcommand(new CreateSubCommand())
+                .addSubcommand(new CreateEventListener())
                 .execute(args);
-
-
-
     }
 
 
     @Override
     public void run() {
-
         System.out.println("Running command..");
-
     }
 }

@@ -2,6 +2,7 @@ package org.ares.openterminal.foundation.impl;
 
 import org.apache.velocity.VelocityContext;
 import org.ares.openterminal.Buildable;
+import org.ares.openterminal.util.EventTemplateHandler;
 import org.ares.openterminal.util.StringUtil;
 import org.ares.openterminal.util.TemplateBuilder;
 import org.ares.openterminal.util.YamlHandler;
@@ -17,9 +18,14 @@ public class CreateEventListener implements Runnable, Buildable {
     @Parameters()
     private String name;
 
+    @Parameters(defaultValue = "")
+    private String eventType = "";
+
     final static String PROPERTY_KEY = "listener_location";
 
-    final static String TEMPLATE = "\\EventListenerTemplate.vm";
+    final static String TEMPLATE_FOLDER = "\\listeners\\";
+
+    final String template = TEMPLATE_FOLDER;
 
     final static String PACKAGE_NAME = new YamlHandler().getPackageName(PROPERTY_KEY);
 
@@ -27,8 +33,7 @@ public class CreateEventListener implements Runnable, Buildable {
         VelocityContext context = new VelocityContext();
 
         context.put("PACKAGE_NAME", PACKAGE_NAME);
-        context.put("CLASS_NAME", StringUtil.addCommandLabel(name));
-        context.put("NAME", StringUtil.getCommandName(name));
+        context.put("CLASS_NAME", StringUtil.addListenerLabel(name));
 
         return context;
     }
@@ -36,8 +41,13 @@ public class CreateEventListener implements Runnable, Buildable {
     @Override
     public void run() {
         TemplateBuilder templateBuilder = new TemplateBuilder();
-        Writer writer = templateBuilder.createFileWriter(PROPERTY_KEY, name);
-        templateBuilder.createTemplate(writer, TEMPLATE, buildContext());
+        Writer writer = templateBuilder.createFileWriter(PROPERTY_KEY, StringUtil.addListenerLabel(name));
+        templateBuilder.createTemplate(writer, template + getEventType(eventType), buildContext());
         templateBuilder.flushFileWriter(writer);
     }
+
+    public String getEventType(String eventType) {
+        return new EventTemplateHandler().fetchTemplate(eventType);
+    }
+
 }
