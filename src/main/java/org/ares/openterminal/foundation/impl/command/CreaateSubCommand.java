@@ -38,9 +38,9 @@ public class CreateSubCommand implements Runnable, Buildable {
         final String packageName =  PackageHandler.createPackageSubCommand(name, subPackageName, PROPERTY_KEY);
         TemplateBuilder templateBuilder = new TemplateBuilder();
         VelocityContext context = buildContext();
-        context.put("PACKAGE_NAME", new YamlHandler().getCommandGroupPackageName(PROPERTY_KEY, packageName));
+        context.put("PACKAGE_NAME", new YamlHandler().getGroupPackageName(PROPERTY_KEY, packageName));
 
-        Writer writer = templateBuilder.createFileWriterCommandGroup(PROPERTY_KEY, packageName, name);
+        Writer writer = templateBuilder.createFileWriterGroup(PROPERTY_KEY, packageName, name);
         templateBuilder.createTemplate(writer, TEMPLATE, context);
         templateBuilder.flushFileWriter(writer);
     }

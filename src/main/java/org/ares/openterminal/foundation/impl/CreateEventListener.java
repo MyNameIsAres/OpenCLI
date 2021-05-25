@@ -2,10 +2,7 @@ package org.ares.openterminal.foundation.impl;
 
 import org.apache.velocity.VelocityContext;
 import org.ares.openterminal.Buildable;
-import org.ares.openterminal.util.EventTemplateHandler;
-import org.ares.openterminal.util.StringUtil;
-import org.ares.openterminal.util.TemplateBuilder;
-import org.ares.openterminal.util.YamlHandler;
+import org.ares.openterminal.util.*;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
@@ -19,7 +16,10 @@ public class CreateEventListener implements Runnable, Buildable {
     private String name;
 
     @Parameters(defaultValue = "")
-    private String eventType = "";
+    private final String eventType = "";
+
+    @Parameters(defaultValue = "")
+    private final String subPackageName = "";
 
     final static String PROPERTY_KEY = "listener_location";
 
@@ -32,7 +32,7 @@ public class CreateEventListener implements Runnable, Buildable {
     public VelocityContext buildContext() {
         VelocityContext context = new VelocityContext();
 
-        context.put("PACKAGE_NAME", PACKAGE_NAME);
+        context.put("PACKAGE_NAME", "");
         context.put("CLASS_NAME", StringUtil.addListenerLabel(name));
 
         return context;
@@ -40,6 +40,8 @@ public class CreateEventListener implements Runnable, Buildable {
 
     @Override
     public void run() {
+        final String packageName =  PackageHandler.createPackage(name, subPackageName, PROPERTY_KEY);
+
         TemplateBuilder templateBuilder = new TemplateBuilder();
         Writer writer = templateBuilder.createFileWriter(PROPERTY_KEY, StringUtil.addListenerLabel(name));
         templateBuilder.createTemplate(writer, template + getEventType(eventType), buildContext());
