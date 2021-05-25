@@ -45,10 +45,10 @@ public class TemplateBuilder {
 
         try {
             engine.mergeTemplate(templateName.getName(), "UTF-8", context, writer);
-        } catch(NullPointerException exception) {
-          // TODO: Create folder if it doesn't exist.
+        } catch(Exception exception) {
+            System.out.println("An exception occurred while creating the template! Please check the stacktrace!");
 
-            System.out.println("We can't find this directory!");
+            exception.printStackTrace();
         }
 
     }

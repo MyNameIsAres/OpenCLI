@@ -19,7 +19,7 @@ class OpenTerminal implements Runnable {
     public static void main(String[] args) throws IOException {
 
         new CommandLine(new OpenTerminal())
-//                .addSubcommand(new CreateSimpleEnchantment())
+                .addSubcommand(new CreateSimpleEnchantment())
                 .addSubcommand(new CreateSimpleCommand())
                 .addSubcommand(new SpringCreateModelCommand())
                 .addSubcommand(new CreateSimplePrompt())
