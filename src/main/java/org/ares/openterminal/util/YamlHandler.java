@@ -1,6 +1,5 @@
 package org.ares.openterminal.util;
 
-import org.ares.openterminal.exceptions.KeyValueNotFoundException;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.FileInputStream;
@@ -12,8 +11,8 @@ public class YamlHandler {
 
     final static String PREFIX = "src/main/java/";
 
+    // TODO: Make private when refactoring Spring commands
     public Map<String, Object> fetchInformation() {
-
         InputStream inputStream;
         Map<String, Object> data;
         try {
@@ -34,31 +33,34 @@ public class YamlHandler {
     }
 
     public String getProjectPath() {
-        verifyKey("project-path");
-
-        return fetchInformation().get("project-path").toString();
+        return getKeyValue("project-path");
     }
 
     public String getKeyValue(String key) {
+        try {
+            return fetchInformation().get(key).toString();
 
-        return fetchInformation().get(key).toString();
+        } catch (Exception exception) {
+          return "An exception occurred when trying to get the key or value!";
+        }
     };
 
-    // TODO Uhh, fix this yeh
     public void verifyKey(String key)  {
-        if (this.getKeyValue(key) == null || this.getKeyValue(key).isEmpty()) {
-
+        try {
+            getKeyValue(key);
+        } catch (Exception e) {
+            System.out.println("We couldn't verify this key! Please check the stacktrace!");
         }
-
     }
 
     public String getTargetLocation(final String projectPath, final String key, final String name) {
+        verifyKey(key);
+
         return  PREFIX + projectPath + key + "/" + name;
     }
 
     public String getCommandGroupLocation(final String projectPath, final String key) {
-        System.out.println(projectPath);
-        System.out.println(key);
+        verifyKey(key);
         return PREFIX + projectPath + key + "/";
     }
 
