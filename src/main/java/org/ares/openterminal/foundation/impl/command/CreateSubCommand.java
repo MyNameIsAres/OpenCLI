@@ -7,7 +7,6 @@ import org.ares.openterminal.util.StringUtil;
 import org.ares.openterminal.util.TemplateBuilder;
 import org.ares.openterminal.util.YamlHandler;
 import picocli.CommandLine.Command;
-import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 import java.io.*;
 
@@ -17,13 +16,12 @@ public class CreateSubCommand implements Runnable, Buildable {
     @Parameters()
     private String name;
 
-    @Option(names = {"parent", "p"})
-    String subPackageName = "";
+    @Parameters(defaultValue = "")
+    private final String subPackageName = "";
 
     final static String PROPERTY_KEY = "command_location";
 
     final static String TEMPLATE = "\\command\\SimpleSubCommandTemplate.vm";
-
 
     public VelocityContext buildContext() {
         VelocityContext context = new VelocityContext();

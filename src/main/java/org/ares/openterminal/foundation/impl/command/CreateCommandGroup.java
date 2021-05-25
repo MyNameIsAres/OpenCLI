@@ -7,7 +7,6 @@ import org.ares.openterminal.util.StringUtil;
 import org.ares.openterminal.util.TemplateBuilder;
 import org.ares.openterminal.util.YamlHandler;
 import picocli.CommandLine.Command;
-import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 import java.io.Writer;
 
@@ -17,8 +16,9 @@ public class CreateCommandGroup implements Runnable, Buildable {
     @Parameters
     private String name;
 
-    @Option(names = {"package", "p"})
-    String subPackageName = "";
+    @Parameters(defaultValue = "")
+    private final String subPackageName = "";
+
 
     final static String PROPERTY_KEY = "command_location";
 
