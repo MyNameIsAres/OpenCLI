@@ -71,7 +71,7 @@ public class EventTemplateHandler {
     }
 
     private String getPlayerInteractTemplate() {
-        return "PlayerEventJoinTemplate.vm";
+        return "PlayerChatTemplate.vm";
     }
 
     private String getPlayerInteractEntityTemplate() {

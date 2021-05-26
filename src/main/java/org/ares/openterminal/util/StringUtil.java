@@ -252,4 +252,21 @@ public class StringUtil {
     public static String addListenerLabel(String className) {
         return !className.contains("Listener") ? className + "Listener" : className;
     }
+
+    /*******************************************
+                Spring String Util
+     ******************************************/
+
+    public static String addControllerLabel(String className) {
+        return !className.contains("Controller") ? className + "Controller" : className;
+    }
+
+    public static String addRepositoryLabel(String className) {
+        return !className.contains("Repository") ? className + "Repository" : className;
+    }
+
+    public static String addServiceLabel(String className) {
+        return !className.contains("Service") ? className + "Service" : className;
+    }
+
 }
