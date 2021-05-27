@@ -1,4 +1,4 @@
-package org.ares.openterminal.util;
+package org.ares.openterminal.util.spring;
 
 public class SpringModelUtil {
 

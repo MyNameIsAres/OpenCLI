@@ -7,6 +7,7 @@ import org.ares.openterminal.foundation.impl.command.CreateSimpleCommand;
 import org.ares.openterminal.foundation.impl.command.CreateSubCommand;
 import org.ares.openterminal.foundation.impl.conversation.CreateSimpleConversation;
 import org.ares.openterminal.foundation.impl.conversation.CreateSimplePrompt;
+import org.ares.openterminal.spring.CreateControllerCommand;
 import org.ares.openterminal.spring.SpringCreateModelCommand;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
@@ -24,9 +25,10 @@ class OpenTerminal implements Runnable {
                 .addSubcommand(new SpringCreateModelCommand())
                 .addSubcommand(new CreateSimplePrompt())
                 .addSubcommand(new CreateSimpleConversation())
-                .addSubcommand(new CreateCommandGroup())
-                .addSubcommand(new CreateSubCommand())
+//                .addSubcommand(new CreateCommandGroup())
+//                .addSubcommand(new CreateSubCommand())
                 .addSubcommand(new CreateEventListener())
+                .addSubcommand(new CreateControllerCommand())
                 .execute(args);
     }
 
