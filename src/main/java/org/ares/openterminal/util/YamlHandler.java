@@ -78,4 +78,10 @@ public class YamlHandler {
 
         return newPackageName;
     }
+
+
+    public String getSpringModelPath() {
+        return "./src/main/java/" + getProjectPath() + getKeyValue("model_location") + "/";
+
+    }
 }

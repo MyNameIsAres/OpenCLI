@@ -17,7 +17,7 @@ public class CreateCommandGroup implements Runnable, Buildable {
     private String name;
 
     @Parameters(defaultValue = "")
-    private final String subPackageName = "";
+    private String subPackageName = "";
 
 
     final static String PROPERTY_KEY = "command_location";
