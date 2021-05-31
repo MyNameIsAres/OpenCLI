@@ -60,30 +60,30 @@ public class EventTemplateHandler {
      *********************************************************/
 
     private String getPlayerJoinTemplate() {
-        return "PlayerJoinTemplate.vm";
+        return "player/PlayerJoinTemplate.vm";
     }
     private String getPlayerQuitTemplate() {
-        return "PlayerQuitTemplate.vm";
+        return "player/PlayerQuitTemplate.vm";
     }
 
     private String getPlayerChatTemplate() {
-        return "PlayerEventJoinTemplate.vm";
+        return "player/PlayerEventJoinTemplate.vm";
     }
 
     private String getPlayerInteractTemplate() {
-        return "PlayerChatTemplate.vm";
+        return "player/PlayerChatTemplate.vm";
     }
 
     private String getPlayerInteractEntityTemplate() {
-        return "PlayerInteractEntityTemplate.vm";
+        return "player/PlayerInteractEntityTemplate.vm";
     }
 
     private String getPlayerInteractAtEntityTemplate() {
-        return "PlayerInteractAtEntityTemplate.vm";
+        return "player/PlayerInteractAtEntityTemplate.vm";
     }
 
     private String getPlayerDeathTemplate() {
-        return "PlayerDeathTemplate.vm";
+        return "player/PlayerDeathTemplate.vm";
     }
 
     /*********************************************************
@@ -91,23 +91,23 @@ public class EventTemplateHandler {
      *********************************************************/
 
     private String getEntitySpawnTemplate() {
-        return "EntitySpawnTemplate.vm";
+        return "entity/EntitySpawnTemplate.vm";
     }
 
     private String getEntityDamageEvent() {
-        return "EntityDamageEvent.vm";
+        return "entity/EntityDamageEvent.vm";
     }
 
     private String getEntityDamageByEntityTemplate() {
-        return "EntityDamageByEntityTemplate.vm";
+        return "entity/EntityDamageByEntityTemplate.vm";
     }
 
     private String getSpawnerSpawnTemplate() {
-        return "SpawnerSpawnTemplate.vm";
+        return "entity/SpawnerSpawnTemplate.vm";
     }
 
     private String getEntityInteractTemplate() {
-        return "EntityInteractTemplate.vm";
+        return "entity/EntityInteractTemplate.vm";
     }
 
     /*********************************************************
@@ -115,13 +115,13 @@ public class EventTemplateHandler {
      *********************************************************/
 
     private String getBlockBreakEventTemplate() {
-        return "PlayerEventJoinTemplate.vm";
+        return "entity/PlayerEventJoinTemplate.vm";
     }
     private String getBlockPlaceEventTemplate() {
-        return "PlayerEventJoinTemplate.vm";
+        return "entity/PlayerEventJoinTemplate.vm";
     }
     private String getBlockInteractEventTemplate() {
-        return "PlayerEventJoinTemplate.vm";
+        return "entity/PlayerEventJoinTemplate.vm";
     }
 
     /*********************************************************
@@ -129,15 +129,15 @@ public class EventTemplateHandler {
      *********************************************************/
 
     private String getInventoryOpenTemplate() {
-        return "InventoryOpenTemplate.vm";
+        return "inventory/InventoryOpenTemplate.vm";
     }
 
     private String getInventoryClickTemplate() {
-        return "InventoryOpenTemplate.vm";
+        return "inventory/InventoryOpenTemplate.vm";
     }
 
     private String getInventoryCloseTemplate() {
-        return "InventoryCloseTemplate.vm";
+        return "inventory/InventoryCloseTemplate.vm";
     }
 
     /*********************************************************
@@ -145,10 +145,10 @@ public class EventTemplateHandler {
      *********************************************************/
 
     private String getProjectileLaunchTemplate() {
-        return "ProjectileLaunchTemplate.vm";
+        return "projectile/ProjectileLaunchTemplate.vm";
     }
 
     private String getProjectileHitTemplate() {
-        return "ProjectileHitTemplate.vm";
+        return "projectile/ProjectileHitTemplate.vm";
     }
 }
