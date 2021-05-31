@@ -13,11 +13,10 @@ import java.io.Writer;
 @Command(name = "make:controller")
 public class CreateControllerCommand implements Runnable, Buildable {
 
-
     @Parameters()
     String name;
 
-    @Parameters(defaultValue = "RestController")
+    @Parameters(defaultValue = "Rest")
     String controllerType = "";
 
     @Parameters(defaultValue = "true")
@@ -33,7 +32,7 @@ public class CreateControllerCommand implements Runnable, Buildable {
 
     final static String PROPERTY_KEY = "controller_location";
 
-    final static String template = "\\controller\\";
+    final static String templatePrefix = "\\controller\\";
 
     final static String PACKAGE_NAME = new YamlHandler().getPackageName(PROPERTY_KEY);
 
@@ -42,22 +41,35 @@ public class CreateControllerCommand implements Runnable, Buildable {
         VelocityContext context = new VelocityContext();
         context.put("PACKAGE_NAME", PACKAGE_NAME);
         context.put("CLASS_NAME", name);
-        context.put("CONTROLLER_TYPE",  controllerType);
+        context.put("CONTROLLER_TYPE",  StringUtil.getValidControllerType(controllerType));
+
+        context.put("TYPE", StringUtil.getControllerName(name));
+        context.put("LOWER_CASE_TYPE", StringUtil.getControllerName(name.toLowerCase()));
+        context.put("TYPE_PLURAL", name + "s");
 
         return context;
     }
 
+    private String createCrudIfModelExists() {
+        if (SpringUtility.modelExists(name)) {
+          return templatePrefix + "ControllerCrud.vm";
+        }
+        // Not as clean but necessary for now.
+        if (createCrudMethods.equals("false")) {
+            return templatePrefix + "Controller.vm";
+        }
+
+        return templatePrefix + "Controller.vm";
+    }
 
     @Override
     public void run() {
-        SpringUtility utility = new SpringUtility();
-        utility.modelExists(name);
+        String template = createCrudIfModelExists();
 
-
-//        TemplateBuilder templateBuilder = new TemplateBuilder();
-//        Writer writer = templateBuilder.createFileWriter(PROPERTY_KEY, name);
-//        templateBuilder.createTemplateSpring(writer, TEMPLATE, buildContext());
-//        templateBuilder.flushFileWriter(writer);
+        TemplateBuilder templateBuilder = new TemplateBuilder();
+        Writer writer = templateBuilder.createFileWriter(PROPERTY_KEY, name);
+        templateBuilder.createTemplateSpring(writer, template, buildContext());
+        templateBuilder.flushFileWriter(writer);
     }
 
 
